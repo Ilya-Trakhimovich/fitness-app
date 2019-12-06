@@ -4,6 +4,7 @@ using System.Text;
 
 namespace Fitness.BL.Model
 {
+    [Serializable]
     public class Food
     {
         /// <summary>
