@@ -1,6 +1,8 @@
 ﻿using Fitness.BL.Controller;
 using Fitness.BL.Model;
 using System;
+using System.Globalization;
+using System.Resources;
 
 namespace Fitness.CMD
 {
@@ -8,9 +10,12 @@ namespace Fitness.CMD
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Вас приветствует приложение Fitness_1.");
+            var culture = CultureInfo.CreateSpecificCulture("");
+            var resourceManager = new ResourceManager("Fitness.CMD.Languages.Messages", typeof(Program).Assembly);
 
-            Console.WriteLine("Введите имя пользовтеля.");
+            Console.WriteLine(resourceManager.GetString("Hello", culture));
+
+            Console.WriteLine(resourceManager.GetString("EnterName", culture));
             var name = Console.ReadLine();
 
             var userController = new UserController(name);
@@ -65,7 +70,6 @@ namespace Fitness.CMD
             var product = new Food(food, calories,prots, fats, carbs);
 
             return (Food: product, Weight: weight);
-
         }
 
         private static DateTime ParseDateTime()
@@ -102,7 +106,5 @@ namespace Fitness.CMD
                 }
             }
         }
-    }
-
-    
+    }    
 }
